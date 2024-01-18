@@ -72,48 +72,47 @@ type SlackMessageInterface interface {
 func NewSlackMessage() SlackMessage {
 	return SlackMessage{}
 }
-
-func AddBlock(message SlackMessage, block Block) SlackMessage {
-	message.Blocks = append(message.Blocks, block)
-	return message
+func (m *SlackMessage) AddBlock(block Block) *SlackMessage {
+	m.Blocks = append(m.Blocks, block)
+	return m
 }
 
-func AddTextObject(block Block, textObject TextObject) Block {
+func (m *SlackMessage) AddTextObject(block Block, textObject TextObject) *SlackMessage {
 	block.Elements = append(block.Elements, textObject)
-	return block
+	return m
 }
 
-func AddAccessory(block Block, accessory Accessory) Block {
+func (m *SlackMessage) AddAccessory(block Block, accessory Accessory) *SlackMessage {
 	block.Accessory = &accessory
-	return block
+	return m
 }
 
-func AddElement(block Block, element TextObject) Block {
+func (m *SlackMessage) AddElement(block Block, element TextObject) *SlackMessage {
 	block.Elements = append(block.Elements, element)
-	return block
+	return m
 }
 
-func SetTitle(block Block, title TextObject) Block {
+func (m *SlackMessage) SetTitle(block Block, title TextObject) *SlackMessage {
 	block.Title = &title
-	return block
+	return m
 }
 
-func SetImageURL(block Block, imageURL string) Block {
+func (m *SlackMessage) SetImageURL(block Block, imageURL string) *SlackMessage {
 	block.ImageURL = imageURL
-	return block
+	return m
 }
 
-func SetAltText(block Block, altText string) Block {
+
+func (m *SlackMessage) SetAltText(block Block, altText string) *SlackMessage {
 	block.AltText = altText
-	return block
+	return m
 }
 
-func SetText(textObject TextObject, text string) TextObject {
+func (m *SlackMessage) SetText(textObject TextObject, text string) *SlackMessage {
 	textObject.Text = text
-	return textObject
+	return m
 }
 
-func PrintMessage(message SlackMessage) {
-	fmt.Println(message)
+func (m *SlackMessage) PrintMessage() {
+	fmt.Println(m)
 }
-
